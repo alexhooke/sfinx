@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Stack_Trace__c</fullName>
+    <description>Provides a detailed list of function calls and their sequence, showing the path of execution</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Provides a detailed list of function calls and their sequence, showing the path of execution</inlineHelpText>
+    <label>Stack Trace</label>
+    <length>131072</length>
+    <trackTrending>false</trackTrending>
+    <type>LongTextArea</type>
+    <visibleLines>5</visibleLines>
+</CustomField>

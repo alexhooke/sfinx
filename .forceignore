@@ -1,0 +1,10 @@
+package.xml
+
+# LWC configuration files
+**/jsconfig.json
+**/.eslintrc.json
+
+# Ignored metadata
+src/main/default/appMenus/AppSwitcher.appMenu-meta.xml
+src/main/default/profiles/Admin.profile-meta.xml
+src/main/default/profiles/Trial Customer Portal User.profile-meta.xml
