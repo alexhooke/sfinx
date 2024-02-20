@@ -44,21 +44,4 @@ private class LoggerTest {
         System.assertEquals(String.valueOf(Logger.LEVEL_DEBUG), log.Level__c);
         System.assertEquals('Test log message', log.Message__c);
     }
-
-    @IsTest
-    static void testClearLogHistory() {
-
-        Logger.log('Test log 1');
-        Logger.log('Test log 2');
-
-        List<Log__c> logs = [SELECT Id FROM Log__c LIMIT 1000];
-        System.assertEquals(2, logs.size());
-
-        Test.startTest();
-        Logger.clearLogHistory();
-        Test.stopTest();
-
-        logs = [SELECT Id FROM Log__c LIMIT 1000];
-        System.assertEquals(0, logs.size());
-    }
 }

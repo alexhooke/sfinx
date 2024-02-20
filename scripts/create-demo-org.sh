@@ -15,7 +15,7 @@ ORG_ALIAS=$1
 sf org create scratch --definition-file config/project-scratch-def.json --alias "$ORG_ALIAS"
 
 # Framework source code deployment
-sf project deploy start --target-org "$ORG_ALIAS" --ignore-conflicts
+sf project deploy start --ignore-conflicts --target-org "$ORG_ALIAS"
 
 # Install demo metadata
 sf project deploy start --source-dir demo --target-org "$ORG_ALIAS"
