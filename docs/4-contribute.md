@@ -13,20 +13,11 @@ sf org login web --set-default-dev-hub --alias dev-hub
 
 ### Create a new dev environment
 
-```shell
-# Create a new scratch org
-sf org create scratch --definition-file config/project-scratch-def.json --alias sfinx.dev1
-```
+Run the bash script passing the alias for your dev environment as a parameter. The script will automatically 
+create and configure a new scratch org with the installed SFINX Framework.
+
+Example:
 
 ```shell
-# Open scratch org
-sf org open --target-org sfinx.dev1
-```
-
-```shell
-sf project retrieve start --target-org sfinx.demo
-```
-
-```shell
-sf project deploy start --target-org sfinx.demo
+./scripts/create-demo-org.sh sfinx.demo sfinx.dev1
 ```

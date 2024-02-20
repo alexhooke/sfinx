@@ -6,7 +6,7 @@
  */
 global class Logger {
 
-    global static final Integer MIN_LOG_LEVEL  = 40;
+    global static final Integer MIN_LOG_LEVEL  = 10;
 
     global static final Integer LEVEL_DEBUG    = 10;
     global static final Integer LEVEL_WARNING  = 20;
@@ -71,25 +71,22 @@ global class Logger {
             log.Trigger_Size__c = Trigger.size;
             log.Trigger_New_Records__c = serialize(Trigger.new);
             log.Trigger_Old_Records__c = serialize(Trigger.old);
+
+            // If there is just one record in a trigger and it has an ID,
+            // we associate a log with that record.
+            if (Trigger.size == 1 && Trigger.new[0].Id != null) {
+                log.Record_Id__c = Trigger.new[0].Id;
+            }
         }
 
         log.Debug_Data__c = serialize(o);
-
-
-        log.Limit_Callouts__c = String.valueOf(Limits.getCallouts()) + '/' + String.valueOf(Limits.getLimitCallouts());
-        log.Limit_CPU_Time__c = String.valueOf(Limits.getCpuTime()) + '/' + String.valueOf(Limits.getLimitCpuTime());
-
 
         // Trimming values of long fields
         Database.DMLOptions dml = new Database.DMLOptions();
         dml.allowFieldTruncation = true;
         log.setOptions(dml);
 
-        System.debug(log);
-
         insert log;
-
-        System.debug(log);
     }
 
     /**
@@ -136,10 +133,6 @@ global class Logger {
         }
 
         return CONTEXT_CONTROLLER;
-    }
-
-    public static void clearLogHistory() {
-        delete [SELECT Id FROM Log__c ORDER BY CreatedDate LIMIT 10000];
     }
 
     private class LoggerException extends Exception {

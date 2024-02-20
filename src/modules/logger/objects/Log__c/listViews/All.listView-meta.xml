@@ -5,6 +5,7 @@
     <columns>Level__c</columns>
     <columns>Context__c</columns>
     <columns>Message__c</columns>
+    <columns>CREATED_DATE</columns>
     <columns>CREATEDBY_USER</columns>
     <filterScope>Everything</filterScope>
     <label>All</label>

@@ -6,7 +6,7 @@
  */
 public virtual class TriggerHandler {
 
-    protected void run() {
+    public void run() {
 
         if (!Trigger.isExecuting) {
             return;

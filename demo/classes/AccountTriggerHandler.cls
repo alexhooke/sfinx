@@ -5,11 +5,12 @@
  * please view the LICENSE file that was distributed with this source code.
  */
 public with sharing class AccountTriggerHandler extends TriggerHandler {
-    private override void beforeInsert() {
+
+    public override void beforeInsert() {
         Logger.log('Account Trigger: before insert');
     }
 
-    private override void afterInsert() {
+    public override void afterInsert() {
         Logger.log('Account Trigger: after insert');
     }
 }
