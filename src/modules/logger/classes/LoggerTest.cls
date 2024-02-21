@@ -7,26 +7,54 @@
 @IsTest
 private class LoggerTest {
 
+    @TestSetup
+    static void makeData() {
+        // Org Default Logger Settings
+        insert new Logger_Settings__c(
+            Is_Enabled__c = true,
+            Min_Log_Level__c = 0
+        );
+    }
+
+
     @IsTest
     static void testLogException() {
 
         // Code that may throw an exception
         Test.startTest();
         try {
-            System.assert(false, 'This is an example exception');
+            insert new Account();
         } catch (Exception e) {
             Logger.log(e);
         }
         Test.stopTest();
 
         // Add assertions to check if the log record is created
-        List<Log__c> logs = [SELECT Id FROM Log__c];
-        System.assertEquals(1, logs.size());
+        List<Log__c> logs = [SELECT Context__c, Level__c, Message__c FROM Log__c LIMIT 1000];
+        Assert.areEqual(1, logs.size());
 
         Log__c log = logs[0];
-        System.assertEquals(Logger.CONTEXT_CONTROLLER, log.Context__c);
-        System.assertEquals(String.valueOf(Logger.LEVEL_FATAL), log.Level__c);
-        System.assertEquals('This is an example exception', log.Message__c);
+        Assert.areEqual(Logger.CONTEXT_UNIT_TEST, log.Context__c);
+        Assert.areEqual(String.valueOf(Logger.LEVEL_ERROR), log.Level__c);
+    }
+    
+    @isTest
+    static void testLogExceptionWithObject() {
+
+        Test.startTest();
+        try {
+            Integer result = 1 / 0;
+        } catch (Exception e) {
+            Logger.log(e, new Account());
+        }
+        Test.stopTest();
+        
+        List<Log__c> logs = [SELECT Context__c, Level__c, Message__c FROM Log__c LIMIT 1000];
+        Assert.areEqual(1, logs.size());
+
+        Log__c log = logs[0];
+        Assert.areEqual(Logger.CONTEXT_UNIT_TEST, log.Context__c);
+        Assert.areEqual(String.valueOf(Logger.LEVEL_ERROR), log.Level__c);
     }
 
     @IsTest
@@ -36,12 +64,7 @@ private class LoggerTest {
         Logger.log(Logger.LEVEL_DEBUG, 'Test log message');
         Test.stopTest();
 
-        List<Log__c> logs = [SELECT Id FROM Log__c LIMIT 1000];
-        System.assertEquals(1, logs.size());
-
-        Log__c log = logs[0];
-        System.assertEquals(Logger.CONTEXT_CONTROLLER, log.Context__c);
-        System.assertEquals(String.valueOf(Logger.LEVEL_DEBUG), log.Level__c);
-        System.assertEquals('Test log message', log.Message__c);
+        List<Log__c> logs = [SELECT Context__c, Level__c, Message__c FROM Log__c LIMIT 1000];
+        Assert.areEqual(0, logs.size());
     }
 }

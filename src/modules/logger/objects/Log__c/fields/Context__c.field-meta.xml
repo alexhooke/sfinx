@@ -42,7 +42,7 @@
                 <label>Trigger</label>
             </value>
             <value>
-                <fullName>test</fullName>
+                <fullName>unit-test</fullName>
                 <default>false</default>
                 <label>Unit Test</label>
             </value>
