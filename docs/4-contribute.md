@@ -21,3 +21,17 @@ Example:
 ```shell
 ./scripts/create-demo-org.sh sfinx.demo sfinx.dev1
 ```
+
+### 
+
+After making changes to the code or metadata, you can retrieve the changes from the Salesforce instance:
+
+```shell
+sf project retrieve start --target-org sfinx.dev1
+```
+
+You can specify specific metadata to retrieve:
+
+```shell
+sf project retrieve start --target-org sfinx.dev1 --metadata CustomObject
+```

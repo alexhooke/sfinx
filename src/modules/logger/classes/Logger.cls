@@ -3,47 +3,79 @@
  *
  * This file is part of the SFINX package. For the full copyright and license information,
  * please view the LICENSE file that was distributed with this source code.
+ * 
+ * @description Logger is designed to save information about various situations for monitoring, 
+ * debugging, and auditing purposes
  */
-global class Logger {
+public inherited sharing class Logger {
 
-    global static final Integer MIN_LOG_LEVEL  = 10;
+    public static final Integer DEFAULT_MIN_LOG_LEVEL  = 30;
 
-    global static final Integer LEVEL_DEBUG    = 10;
-    global static final Integer LEVEL_WARNING  = 20;
-    global static final Integer LEVEL_ERROR    = 30;
-    global static final Integer LEVEL_FATAL    = 40;
+    public static final Integer LEVEL_DEBUG    = 10;
+    public static final Integer LEVEL_WARNING  = 20;
+    public static final Integer LEVEL_ERROR    = 30;
+    public static final Integer LEVEL_FATAL    = 40;
 
-    global static final String CONTEXT_ANONYMOUS         = 'anonymous';
-    global static final String CONTEXT_BATCH             = 'batch';
-    global static final String CONTEXT_CONTROLLER        = 'controller';
-    global static final String CONTEXT_FUNCTION_CALLBACK = 'function-callback';
-    global static final String CONTEXT_FUTURE            = 'future';
-    global static final String CONTEXT_INTEGRATION       = 'integration';
-    global static final String CONTEXT_QUEUEABLE         = 'queueable';
-    global static final String CONTEXT_TRIGGER           = 'trigger';
-    global static final String CONTEXT_SCHEDULER         = 'scheduler';
-    global static final String CONTEXT_UNIT_TEST         = 'unit-test';
+    public static final String CONTEXT_ANONYMOUS         = 'anonymous';
+    public static final String CONTEXT_BATCH             = 'batch';
+    public static final String CONTEXT_CONTROLLER        = 'controller';
+    public static final String CONTEXT_FUNCTION_CALLBACK = 'function-callback';
+    public static final String CONTEXT_FUTURE            = 'future';
+    public static final String CONTEXT_INTEGRATION       = 'integration';
+    public static final String CONTEXT_QUEUEABLE         = 'queueable';
+    public static final String CONTEXT_TRIGGER           = 'trigger';
+    public static final String CONTEXT_SCHEDULER         = 'scheduler';
+    public static final String CONTEXT_UNIT_TEST         = 'unit-test';
 
 
+    /**
+     * @description Logs exception error along with additional data.
+     *
+     * @param e Exception
+     */
     public static void log(Exception e) {
         log(LEVEL_ERROR, e, null);
     }
 
+    /**
+     * @description Logs exception error along with additional data.
+     *
+     * @param e Exception
+     * @param o Object instance or collection
+     */
     public static void log(Exception e, Object o) {
         log(LEVEL_ERROR, e, o);
     }
 
+    /**
+     * @description Logs debug message
+     *
+     * @param message Debug message
+     */
     public static void log(String message) {
         log(LEVEL_DEBUG, new LoggerException(message), null);
     }
 
+    /**
+     * @description Logs a text string with the specified logging level.
+     *
+     * @param logLevel Numerical logging level (the higher the level, the more serious a log).
+     * @param message Log message
+     */
     public static void log(Integer logLevel, String message) {
         log(logLevel, new LoggerException(message), null);
     }
 
+    /**
+     * @description Main logging method.
+     *
+     * @param logLevel Numerical logging level (the higher the level, the more serious a log).
+     * @param e Exception
+     * @param o Object instance or collection
+     */
     public static void log(Integer logLevel, Exception e, Object o) {
 
-        if (logLevel < MIN_LOG_LEVEL) return;
+        if (isLoggingNotAllowed(logLevel)) return;
 
         Log__c log = new Log__c(
             Context__c = getContext(e),
@@ -86,27 +118,31 @@ global class Logger {
         dml.allowFieldTruncation = true;
         log.setOptions(dml);
 
-        insert log;
+        insert as system log;
     }
 
     /**
-     * Converts data into formatted JSON
+     * @description A helper method that determines whether the given log can be logged.
      *
-     * @param data Any data for sterilization
+     * @param logLevel Numerical logging level (the higher the level, the more serious a log).
      *
-     * @return Formatted JSON
+     * @return True if logging for this level is not allowed
      */
-    private static String serialize(Object data) {
+    private static Boolean isLoggingNotAllowed(Integer logLevel) {
 
-        if (data == null) {
-            return null;
+        Logger_Settings__c settings = Logger_Settings__c.getInstance();
+
+        // Check if custom settings exist and logging is enabled, and if the log level is above the minimum allowed
+        if (settings != null && settings.Is_Enabled__c && settings.Min_Log_Level__c <= logLevel) {
+            return false;
         }
 
-        return JSON.serializePretty(data, true);
+        // If no custom settings exist or logging is disabled, check against the default minimum log level
+        return DEFAULT_MIN_LOG_LEVEL > logLevel;
     }
 
     /**
-     * Defines the context of Apex code execution
+     * @description Defines the context of Apex code execution
      *
      * @param e Exception to define code execution from an anonymous context
      *
@@ -133,6 +169,22 @@ global class Logger {
         }
 
         return CONTEXT_CONTROLLER;
+    }
+
+    /**
+     * @description Converts data into formatted JSON
+     *
+     * @param data Any data for sterilization
+     *
+     * @return Formatted JSON
+     */
+    private static String serialize(Object data) {
+
+        if (data == null) {
+            return null;
+        }
+
+        return JSON.serializePretty(data, true);
     }
 
     private class LoggerException extends Exception {
