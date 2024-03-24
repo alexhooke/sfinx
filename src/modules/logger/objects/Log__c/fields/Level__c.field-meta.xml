@@ -18,6 +18,11 @@
                 <label>DEBUG</label>
             </value>
             <value>
+                <fullName>20</fullName>
+                <default>false</default>
+                <label>INFO</label>
+            </value>
+            <value>
                 <fullName>30</fullName>
                 <default>false</default>
                 <label>WARNING</label>

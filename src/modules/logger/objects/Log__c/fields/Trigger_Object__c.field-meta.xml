@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Trigger_Object__c</fullName>
+    <description>Indicates the trigger object from which the Logger was called.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Indicates the trigger object from which the Logger was called</inlineHelpText>
+    <label>Trigger Object</label>
+    <length>255</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

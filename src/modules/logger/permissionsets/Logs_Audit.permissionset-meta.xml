@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
-    <description>Allows users to view and delete all Log records in the system.</description>
+    <description>Allows users to view all Log records in the system.</description>
     <fieldPermissions>
         <editable>false</editable>
         <field>Log__c.Apex_Class__c</field>
@@ -57,7 +57,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <hasActivationRequired>false</hasActivationRequired>
-    <label>Logs: Administration</label>
+    <label>Logs: Audit</label>
     <objectPermissions>
         <allowCreate>false</allowCreate>
         <allowDelete>false</allowDelete>

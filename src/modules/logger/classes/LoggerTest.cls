@@ -65,6 +65,6 @@ private class LoggerTest {
         Test.stopTest();
 
         List<Log__c> logs = [SELECT Context__c, Level__c, Message__c FROM Log__c LIMIT 1000];
-        Assert.areEqual(0, logs.size());
+        Assert.areEqual(1, logs.size());
     }
 }

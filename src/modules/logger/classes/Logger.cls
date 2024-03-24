@@ -12,9 +12,10 @@ public inherited sharing class Logger {
     public static final Integer DEFAULT_MIN_LOG_LEVEL  = 30;
 
     public static final Integer LEVEL_DEBUG    = 10;
-    public static final Integer LEVEL_WARNING  = 20;
-    public static final Integer LEVEL_ERROR    = 30;
-    public static final Integer LEVEL_FATAL    = 40;
+    public static final Integer LEVEL_INFO     = 20;
+    public static final Integer LEVEL_WARNING  = 30;
+    public static final Integer LEVEL_ERROR    = 40;
+    public static final Integer LEVEL_CRITICAL = 50;
 
     public static final String CONTEXT_ANONYMOUS         = 'anonymous';
     public static final String CONTEXT_BATCH             = 'batch';
@@ -26,6 +27,9 @@ public inherited sharing class Logger {
     public static final String CONTEXT_TRIGGER           = 'trigger';
     public static final String CONTEXT_SCHEDULER         = 'scheduler';
     public static final String CONTEXT_UNIT_TEST         = 'unit-test';
+
+    private static final String SOBJECT_POSTFIX_CUSTOM = '__c';
+    private static final String SOBJECT_POSTFIX_EVENT  = '__e';
 
 
     /**
@@ -81,7 +85,8 @@ public inherited sharing class Logger {
             Context__c = getContext(e),
             Level__c = '' + logLevel,
             Message__c = e.getMessage(),
-            Stack_Trace__c = e.getStackTraceString()
+            Stack_Trace__c = e.getStackTraceString(),
+            Apex_Class__c = getApexClassFromStackTrace(e.getStackTraceString())
         );
 
         if (!e.getTypeName().equals(LoggerException.class.getName())) {
@@ -104,10 +109,13 @@ public inherited sharing class Logger {
             log.Trigger_New_Records__c = serialize(Trigger.new);
             log.Trigger_Old_Records__c = serialize(Trigger.old);
 
-            // If there is just one record in a trigger and it has an ID,
-            // we associate a log with that record.
-            if (Trigger.size == 1 && Trigger.new[0].Id != null) {
-                log.Record_Id__c = Trigger.new[0].Id;
+            // If there is more than one item in trigger data,
+            // get the information about an object
+            if (Trigger.size > 0) {
+                log.Trigger_Object__c = Trigger.new.getSObjectType().getDescribe().getName();
+                if (!log.Trigger_Object__c.endsWith(SOBJECT_POSTFIX_EVENT) && Trigger.new[0].Id != null) {
+                    log.Record_Id__c = Trigger.new[0].Id;
+                }
             }
         }
 
@@ -169,6 +177,24 @@ public inherited sharing class Logger {
         }
 
         return CONTEXT_CONTROLLER;
+    }
+
+    /*
+     * @description The method retrieves the first class name from the stack trace string
+     *
+     * @param stackTrace
+     *
+     * @return Apex class name
+	 */
+    private static String getApexClassFromStackTrace(String stackTrace) {
+        Pattern pattern = Pattern.compile('Class\\.([a-zA-Z0-9_]+)');
+        Matcher matcher = pattern.matcher(stackTrace);
+
+        if (matcher.find()) {
+            return matcher.group(1);
+        }
+
+        return null;
     }
 
     /**

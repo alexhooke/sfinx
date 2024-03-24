@@ -49,26 +49,6 @@
                 <identifier>RecordLevel_cField</identifier>
             </fieldInstance>
         </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.Context__c</fieldItem>
-                <identifier>RecordContext_cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.Exception_Type__c</fieldItem>
-                <identifier>RecordException_Type_cField</identifier>
-            </fieldInstance>
-        </itemInstances>
         <name>Facet-f1a682ef-0b77-42fb-aca4-96cb925c0e80</name>
         <type>Facet</type>
     </flexiPageRegions>
@@ -77,20 +57,10 @@
             <fieldInstance>
                 <fieldInstanceProperties>
                     <name>uiBehavior</name>
-                    <value>readonly</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.Name</fieldItem>
-                <identifier>RecordNameField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.Record_Id__c</fieldItem>
-                <identifier>RecordRecord_Id_cField</identifier>
+                <fieldItem>Record.Context__c</fieldItem>
+                <identifier>RecordContext_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <name>Facet-1e261ec5-fa74-4ea1-ad19-c3fdf977335a</name>
@@ -137,6 +107,16 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
+                <fieldItem>Record.Record_Id__c</fieldItem>
+                <identifier>RecordRecord_Id_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.Trigger_New_Records__c</fieldItem>
                 <identifier>RecordTrigger_New_Records_cField</identifier>
             </fieldInstance>
@@ -145,6 +125,16 @@
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.Trigger_Object__c</fieldItem>
+                <identifier>RecordTrigger_Object_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
         <itemInstances>
             <fieldInstance>
                 <fieldInstanceProperties>
@@ -261,6 +251,26 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.Message__c</fieldItem>
                 <identifier>RecordMessage_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.Exception_Type__c</fieldItem>
+                <identifier>RecordException_Type_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.Apex_Class__c</fieldItem>
+                <identifier>RecordApex_Class_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>

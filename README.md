@@ -24,7 +24,7 @@ try {
 
 ### Demo Org
 
-If you want to explore the SFINX framemork capabilities, then:
+If you want to explore the SFINX framework capabilities, then:
 
 **Step 1:** Clone this GitHub project to your local computer.
 
