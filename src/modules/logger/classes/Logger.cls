@@ -32,6 +32,9 @@ public inherited sharing class Logger {
     private static final String SOBJECT_POSTFIX_EVENT  = '__e';
 
 
+    private static Log__c[] logs = new List<Log__c>();
+
+
     /**
      * @description Logs exception error along with additional data.
      *
@@ -39,6 +42,30 @@ public inherited sharing class Logger {
      */
     public static void log(Exception e) {
         log(LEVEL_ERROR, e, null);
+    }
+
+    public static void log(List<Database.SaveResult> saveResults) {
+        logs.clear();
+        for (Database.SaveResult saveResult: saveResults) {
+            if (!saveResult.isSuccess()) {
+                for (Database.Error error: saveResult.getErrors()) {
+                    addLog(LEVEL_ERROR, new LoggerException(error.getMessage()), error.getFields());
+                }
+            }
+        }
+        save();
+    }
+
+    public static void log(List<Database.UpsertResult> upsertResults) {
+        logs.clear();
+        for (Database.UpsertResult upsertResult: upsertResults) {
+            if (!upsertResult.isSuccess()) {
+                for (Database.Error error: upsertResult.getErrors()) {
+                    addLog(LEVEL_ERROR, new LoggerException(error.getMessage()), error.getFields());
+                }
+            }
+        }
+        save();
     }
 
     /**
@@ -71,6 +98,17 @@ public inherited sharing class Logger {
     }
 
     /**
+     * @description Logs a text string with related data and the specified logging level.
+     *
+     * @param logLevel Numerical logging level (the higher the level, the more serious a log).
+     * @param message Log message
+     * @param o Object for debugging
+     */
+    public static void log(Integer logLevel, String message, Object o) {
+        log(logLevel, new LoggerException(message), o);
+    }
+
+    /**
      * @description Main logging method.
      *
      * @param logLevel Numerical logging level (the higher the level, the more serious a log).
@@ -78,6 +116,19 @@ public inherited sharing class Logger {
      * @param o Object instance or collection
      */
     public static void log(Integer logLevel, Exception e, Object o) {
+        logs.clear();
+        addLog(logLevel, e, o);
+        save();
+    }
+
+    /**
+     * @description Add log to internal array.
+     * 
+     * @param logLevel Numerical logging level (the higher the level, the more serious a log).
+     * @param e Exception
+     * @param o Object instance or collection
+     */
+    private static void addLog(Integer logLevel, Exception e, Object o) {
 
         if (isLoggingNotAllowed(logLevel)) return;
 
@@ -126,7 +177,14 @@ public inherited sharing class Logger {
         dml.allowFieldTruncation = true;
         log.setOptions(dml);
 
-        insert as system log;
+        logs.add(log);
+    }
+
+    /**
+     * @description Save all logs to database in 1 commit.
+     */
+    private static void save() {
+        insert as system logs;
     }
 
     /**
