@@ -231,10 +231,16 @@
                 <componentName>flexipage:fieldSection</componentName>
                 <identifier>flexipage_fieldSection</identifier>
                 <visibilityRule>
+                    <booleanFilter>1 OR 2</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.Context__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>trigger</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Trigger_Size__c}</leftValue>
+                        <operator>GT</operator>
+                        <rightValue>0</rightValue>
                     </criteria>
                 </visibilityRule>
             </componentInstance>

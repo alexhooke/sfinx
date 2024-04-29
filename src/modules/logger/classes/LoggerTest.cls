@@ -16,6 +16,65 @@ private class LoggerTest {
         );
     }
 
+    @IsTest
+    static void testDebug() {
+
+        Logger.debug('Debug message');
+
+        // Add assertions to check if the log record is created
+        List<Log__c> logs = [SELECT Context__c, Level__c, Message__c FROM Log__c LIMIT 1000];
+        Assert.areEqual(1, logs.size());
+
+        Log__c log = logs[0];
+        Assert.areEqual(String.valueOf(Logger.LEVEL_DEBUG), log.Level__c);
+    }
+
+    @IsTest
+    static void testDebugWithObject() {
+
+        Logger.debug('Debug message', new List<String>());
+
+        // Add assertions to check if the log record is created
+        List<Log__c> logs = [SELECT Context__c, Level__c, Message__c FROM Log__c LIMIT 1000];
+        Assert.areEqual(1, logs.size());
+
+        Log__c log = logs[0];
+        Assert.areEqual(String.valueOf(Logger.LEVEL_DEBUG), log.Level__c);
+    }
+
+    @IsTest
+    static void testDatabaseInsert() {
+
+        Test.startTest();
+        SObject[] records = new List<Account>{new Account()};
+        Database.SaveResult[] saveResults = Database.insert(records, false);
+        Logger.log(records, saveResults);
+        Test.stopTest();
+
+        // Add assertions to check if the log record is created
+        List<Log__c> logs = [SELECT Context__c, Level__c, Message__c FROM Log__c LIMIT 1000];
+        Assert.areEqual(1, logs.size());
+
+        Log__c log = logs[0];
+        Assert.areEqual(String.valueOf(Logger.LEVEL_ERROR), log.Level__c);
+    }
+
+    @IsTest
+    static void testDatabaseUpsert() {
+
+        Test.startTest();
+        SObject[] records = new List<Account>{new Account()};
+        Database.UpsertResult[] upsertResults = Database.upsert(records, false);
+        Logger.log(records, upsertResults);
+        Test.stopTest();
+
+        // Add assertions to check if the log record is created
+        List<Log__c> logs = [SELECT Context__c, Level__c, Message__c FROM Log__c LIMIT 1000];
+        Assert.areEqual(1, logs.size());
+
+        Log__c log = logs[0];
+        Assert.areEqual(String.valueOf(Logger.LEVEL_ERROR), log.Level__c);
+    }
 
     @IsTest
     static void testLogException() {

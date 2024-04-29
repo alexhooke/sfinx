@@ -7,10 +7,10 @@
 public with sharing class AccountTriggerHandler extends TriggerHandler {
 
     public override void beforeInsert() {
-        Logger.log('Account Trigger: before insert');
+        Logger.debug('Account Trigger: before insert');
     }
 
     public override void afterInsert() {
-        Logger.log('Account Trigger: after insert');
+        Logger.debug('Account Trigger: after insert');
     }
 }
