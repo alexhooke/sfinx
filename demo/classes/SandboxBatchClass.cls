@@ -18,7 +18,7 @@ public with sharing class SandboxBatchClass implements Database.Batchable<SObjec
             }
             update scope;
         } catch (Exception e) {
-            Logger.log(e);
+            Logger.handle(e);
         }
 
     }

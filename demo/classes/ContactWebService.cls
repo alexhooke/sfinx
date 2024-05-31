@@ -9,8 +9,8 @@ global with sharing class ContactWebService {
 
     @HttpPost
     global static String createContactWithAccount(String contactName, String companyName) {
-        try {
 
+        try {
             // Search for an existing Account based on the provided company name
             Account acc = [SELECT Name FROM Account WHERE Name = :companyName LIMIT 1];
 
@@ -26,7 +26,7 @@ global with sharing class ContactWebService {
             return 'Contact created successfully with Id: ' + person.Id;
 
         } catch (Exception e) {
-            Logger.log(e);
+            Logger.handle(e);
         }
 
         return 'exit';

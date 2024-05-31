@@ -43,58 +43,6 @@
             <fieldInstance>
                 <fieldInstanceProperties>
                     <name>uiBehavior</name>
-                    <value>required</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.Level__c</fieldItem>
-                <identifier>RecordLevel_cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <name>Facet-f1a682ef-0b77-42fb-aca4-96cb925c0e80</name>
-        <type>Facet</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.Context__c</fieldItem>
-                <identifier>RecordContext_cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <name>Facet-1e261ec5-fa74-4ea1-ad19-c3fdf977335a</name>
-        <type>Facet</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>body</name>
-                    <value>Facet-f1a682ef-0b77-42fb-aca4-96cb925c0e80</value>
-                </componentInstanceProperties>
-                <componentName>flexipage:column</componentName>
-                <identifier>flexipage_column5</identifier>
-            </componentInstance>
-        </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>body</name>
-                    <value>Facet-1e261ec5-fa74-4ea1-ad19-c3fdf977335a</value>
-                </componentInstanceProperties>
-                <componentName>flexipage:column</componentName>
-                <identifier>flexipage_column6</identifier>
-            </componentInstance>
-        </itemInstances>
-        <name>Facet-f30ca634-4827-4736-99b4-deaa85a58b11</name>
-        <type>Facet</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
                 <fieldItem>Record.Trigger_Operation__c</fieldItem>
@@ -197,23 +145,57 @@
     </flexiPageRegions>
     <flexiPageRegions>
         <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.Apex_Class__c</fieldItem>
+                <identifier>RecordApex_Class_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <name>Facet-7cac95af-6093-427f-abbe-0ae835c928bb</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>readonly</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.Stack_Trace__c</fieldItem>
+                <identifier>RecordStack_Trace_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <name>Facet-166d3c24-d758-4969-8c7d-7a2ff0430df9</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>
-                    <name>columns</name>
-                    <value>Facet-f30ca634-4827-4736-99b4-deaa85a58b11</value>
+                    <name>body</name>
+                    <value>Facet-7cac95af-6093-427f-abbe-0ae835c928bb</value>
                 </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>horizontalAlignment</name>
-                    <value>false</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>label</name>
-                    <value>General Information</value>
-                </componentInstanceProperties>
-                <componentName>flexipage:fieldSection</componentName>
-                <identifier>flexipage_fieldSection3</identifier>
+                <componentName>flexipage:column</componentName>
+                <identifier>flexipage_column3</identifier>
             </componentInstance>
         </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>body</name>
+                    <value>Facet-166d3c24-d758-4969-8c7d-7a2ff0430df9</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:column</componentName>
+                <identifier>flexipage_column4</identifier>
+            </componentInstance>
+        </itemInstances>
+        <name>Facet-830485d8-ed4a-46f2-ad33-af83a259b8bf</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
         <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>
@@ -245,10 +227,54 @@
                 </visibilityRule>
             </componentInstance>
         </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>columns</name>
+                    <value>Facet-830485d8-ed4a-46f2-ad33-af83a259b8bf</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>label</name>
+                    <value>Debug Information</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:fieldSection</componentName>
+                <identifier>flexipage_fieldSection2</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>sfinxLoggerDebugData</componentName>
+                <identifier>c_sfinxLoggerDebugData</identifier>
+            </componentInstance>
+        </itemInstances>
         <name>main</name>
         <type>Region</type>
     </flexiPageRegions>
     <flexiPageRegions>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>required</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.Level__c</fieldItem>
+                <identifier>RecordLevel_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.Context__c</fieldItem>
+                <identifier>RecordContext_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
         <itemInstances>
             <fieldInstance>
                 <fieldInstanceProperties>
@@ -267,36 +293,12 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.Exception_Type__c</fieldItem>
                 <identifier>RecordException_Type_cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.Apex_Class__c</fieldItem>
-                <identifier>RecordApex_Class_cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>readonly</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.Stack_Trace__c</fieldItem>
-                <identifier>RecordStack_Trace_cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>readonly</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.Debug_Data__c</fieldItem>
-                <identifier>RecordDebug_Data_cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.Exception_Type__c}</leftValue>
+                        <operator>NE</operator>
+                    </criteria>
+                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <name>Facet-0e714c0c-38b3-401b-80db-057f698a9445</name>
@@ -329,7 +331,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
-                    <value>Debug</value>
+                    <value>General Information</value>
                 </componentInstanceProperties>
                 <componentName>flexipage:fieldSection</componentName>
                 <identifier>flexipage_fieldSection4</identifier>

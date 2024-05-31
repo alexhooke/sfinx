@@ -5,7 +5,7 @@
 .sf/
 .sfdx/
 src/main/default/
-meta
+meta/
 
 # Code editor files
 .idea/
