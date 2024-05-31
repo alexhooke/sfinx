@@ -19,7 +19,7 @@ create and configure a new scratch org with the installed SFINX Framework.
 Example:
 
 ```shell
-./scripts/create-demo-org.sh sfinx.demo sfinx.dev1
+./scripts/create-demo-org.sh sfinx.dev1
 ```
 
 ### 

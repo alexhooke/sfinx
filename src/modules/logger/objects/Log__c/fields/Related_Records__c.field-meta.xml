@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Debug_Data__c</fullName>
-    <description>Data in JSON format passed to Logger</description>
+    <fullName>Related_Records__c</fullName>
+    <description>A list of related record identifiers in JSON format</description>
     <externalId>false</externalId>
-    <inlineHelpText>Data in JSON format passed to Logger</inlineHelpText>
-    <label>Debug Data</label>
+    <inlineHelpText>A list of related record identifiers in JSON format</inlineHelpText>
+    <label>Related Records</label>
     <length>131072</length>
     <trackTrending>false</trackTrending>
     <type>LongTextArea</type>

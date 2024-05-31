@@ -17,29 +17,67 @@ private class LoggerTest {
     }
 
     @IsTest
-    static void testDebug() {
+    static void testDebugMessage() {
 
+        Test.startTest();
         Logger.debug('Debug message');
+        Test.stopTest();
 
         // Add assertions to check if the log record is created
-        List<Log__c> logs = [SELECT Context__c, Level__c, Message__c FROM Log__c LIMIT 1000];
+        List<Log__c> logs = [SELECT Context__c, Level__c, Message__c, Debug_Data__c FROM Log__c LIMIT 1000];
         Assert.areEqual(1, logs.size());
 
         Log__c log = logs[0];
         Assert.areEqual(String.valueOf(Logger.LEVEL_DEBUG), log.Level__c);
+        Assert.isNull(log.Debug_Data__c);
     }
 
     @IsTest
-    static void testDebugWithObject() {
+    static void testDebugMessageWithData() {
 
+        Test.startTest();
         Logger.debug('Debug message', new List<String>());
+        Test.stopTest();
 
         // Add assertions to check if the log record is created
-        List<Log__c> logs = [SELECT Context__c, Level__c, Message__c FROM Log__c LIMIT 1000];
+        List<Log__c> logs = [SELECT Context__c, Level__c, Message__c, Debug_Data__c FROM Log__c LIMIT 1000];
         Assert.areEqual(1, logs.size());
 
         Log__c log = logs[0];
         Assert.areEqual(String.valueOf(Logger.LEVEL_DEBUG), log.Level__c);
+        Assert.isNotNull(log.Debug_Data__c);
+    }
+
+    @IsTest
+    static void testErrorMessage() {
+
+        Test.startTest();
+        Logger.error('Error message');
+        Test.stopTest();
+
+        // Add assertions to check if the log record is created
+        List<Log__c> logs = [SELECT Debug_Data__c, Level__c FROM Log__c LIMIT 1000];
+        Assert.areEqual(1, logs.size());
+
+        Log__c log = logs[0];
+        Assert.areEqual(String.valueOf(Logger.LEVEL_ERROR), log.Level__c);
+        Assert.isNull(log.Debug_Data__c);
+    }
+
+    @IsTest
+    static void testErrorMessageWithData() {
+
+        Test.startTest();
+        Logger.error('Error message', new Set<Integer>());
+        Test.stopTest();
+
+        // Add assertions to check if the log record is created
+        List<Log__c> logs = [SELECT Debug_Data__c, Level__c FROM Log__c LIMIT 1000];
+        Assert.areEqual(1, logs.size());
+
+        Log__c log = logs[0];
+        Assert.areEqual(String.valueOf(Logger.LEVEL_ERROR), log.Level__c);
+        Assert.isNotNull(log.Debug_Data__c);
     }
 
     @IsTest
@@ -48,7 +86,7 @@ private class LoggerTest {
         Test.startTest();
         SObject[] records = new List<Account>{new Account()};
         Database.SaveResult[] saveResults = Database.insert(records, false);
-        Logger.log(records, saveResults);
+        Logger.handle(records, saveResults);
         Test.stopTest();
 
         // Add assertions to check if the log record is created
@@ -65,7 +103,7 @@ private class LoggerTest {
         Test.startTest();
         SObject[] records = new List<Account>{new Account()};
         Database.UpsertResult[] upsertResults = Database.upsert(records, false);
-        Logger.log(records, upsertResults);
+        Logger.handle(records, upsertResults);
         Test.stopTest();
 
         // Add assertions to check if the log record is created
@@ -84,7 +122,7 @@ private class LoggerTest {
         try {
             insert new Account();
         } catch (Exception e) {
-            Logger.log(e);
+            Logger.handle(e);
         }
         Test.stopTest();
 
@@ -98,13 +136,13 @@ private class LoggerTest {
     }
     
     @isTest
-    static void testLogExceptionWithObject() {
+    static void testLogExceptionWithData() {
 
         Test.startTest();
         try {
             Integer result = 1 / 0;
         } catch (Exception e) {
-            Logger.log(e, new Account());
+            Logger.log(Logger.LEVEL_ERROR, e, new Account());
         }
         Test.stopTest();
         
@@ -123,7 +161,7 @@ private class LoggerTest {
         Logger.log(Logger.LEVEL_DEBUG, 'Test log message');
         Test.stopTest();
 
-        List<Log__c> logs = [SELECT Context__c, Level__c, Message__c FROM Log__c LIMIT 1000];
+        List<Log__c> logs = [SELECT Id FROM Log__c LIMIT 1000];
         Assert.areEqual(1, logs.size());
     }
 }
