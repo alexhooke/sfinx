@@ -3,7 +3,7 @@ import { getRecord } from 'lightning/uiRecordApi';
 
 import DEBUG_DATA_FIELD from '@salesforce/schema/Log__c.Debug_Data__c';
 
-export default class sfinxLoggerDebugData extends LightningElement {
+export default class sfinxLoggerJsonData extends LightningElement {
 
     @api recordId;
     debugData;

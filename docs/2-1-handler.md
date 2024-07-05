@@ -1,4 +1,8 @@
-# Features of Apex Trigger Handler:
+# Trigger Handler
+
+## Trigger Handler Settings
+
+
 
 - One Trigger Per Object: Adheres to best practices by ensuring only one trigger is used per object.
 

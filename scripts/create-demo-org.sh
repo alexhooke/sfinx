@@ -24,5 +24,8 @@ sf project deploy start --source-dir demo --target-org "$ORG_ALIAS"
 sf org assign permset --name Sfinx_App --target-org "$ORG_ALIAS"
 sf org assign permset --name Logs_Administration --target-org "$ORG_ALIAS"
 
+# Demo Org Configuration
+sf apex run --file scripts/create-demo-org.cls --target-org "$ORG_ALIAS"
+
 # Open scratch org
 sf org open --target-org "$ORG_ALIAS"

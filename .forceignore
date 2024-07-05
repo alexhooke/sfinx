@@ -6,5 +6,4 @@ package.xml
 
 # Ignored metadata
 src/main/default/appMenus/AppSwitcher.appMenu-meta.xml
-src/main/default/profiles/Admin.profile-meta.xml
-src/main/default/profiles/Trial Customer Portal User.profile-meta.xml
+src/main/default/profiles/*.profile-meta.xml

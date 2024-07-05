@@ -247,8 +247,8 @@
         </itemInstances>
         <itemInstances>
             <componentInstance>
-                <componentName>sfinxLoggerDebugData</componentName>
-                <identifier>c_sfinxLoggerDebugData</identifier>
+                <componentName>sfinxLoggerJsonData</componentName>
+                <identifier>c_sfinxLoggerJsonData</identifier>
             </componentInstance>
         </itemInstances>
         <name>main</name>
