@@ -4,5 +4,13 @@
   "edition": "Enterprise",
   "hasSampleData": true,
   "language": "en_US",
-  "features": []
+  "features": ["Communities", "ServiceCloud"],
+  "settings": {
+    "communitiesSettings": {
+      "enableNetworksEnabled": true
+    },
+    "lightningExperienceSettings": {
+      "enableS1DesktopEnabled": true
+    }
+  }
 }

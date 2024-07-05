@@ -18,9 +18,11 @@
     <isNavAutoTempTabsDisabled>true</isNavAutoTempTabsDisabled>
     <isNavPersonalizationDisabled>true</isNavPersonalizationDisabled>
     <isNavTabPersistenceDisabled>false</isNavTabPersistenceDisabled>
+    <isOmniPinnedViewEnabled>false</isOmniPinnedViewEnabled>
     <label>SFINX Control Panel</label>
     <navType>Standard</navType>
     <tabs>standard-home</tabs>
+    <tabs>Trigger</tabs>
     <tabs>Log__c</tabs>
     <tabs>standard-Task</tabs>
     <tabs>standard-DeleteEvent</tabs>
