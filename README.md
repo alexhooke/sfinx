@@ -43,6 +43,9 @@ i.e. handling exceptional situations.
 An example of using Logger when inserting data into a database in Apex code:
 
 ```java
+List<Account> accounts = new List<Account>();
+accounts.add(new Account());
+
 try {
    insert accounts;
 } catch(Exception e) {

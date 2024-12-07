@@ -27,5 +27,8 @@ sf org assign permset --name Logs_Administration --target-org "$ORG_ALIAS"
 # Demo Org Configuration
 sf apex run --file scripts/create-demo-org.cls --target-org "$ORG_ALIAS"
 
+# Demo Org Demo Data
+sf apex run --file scripts/create-demo-data.cls --target-org "$ORG_ALIAS"
+
 # Open scratch org
 sf org open --target-org "$ORG_ALIAS"
