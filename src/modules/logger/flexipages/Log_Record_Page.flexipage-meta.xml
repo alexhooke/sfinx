@@ -215,9 +215,9 @@
                 <visibilityRule>
                     <booleanFilter>1 OR 2</booleanFilter>
                     <criteria>
-                        <leftValue>{!Record.Context__c}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>trigger</rightValue>
+                        <leftValue>{!Record.Trigger_Size__c}</leftValue>
+                        <operator>GT</operator>
+                        <rightValue>0</rightValue>
                     </criteria>
                     <criteria>
                         <leftValue>{!Record.Trigger_Size__c}</leftValue>
@@ -263,6 +263,26 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.Level__c</fieldItem>
                 <identifier>RecordLevel_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.Request_Id__c</fieldItem>
+                <identifier>RecordRequest_Id_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.Quiddity__c</fieldItem>
+                <identifier>RecordQuiddity_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>

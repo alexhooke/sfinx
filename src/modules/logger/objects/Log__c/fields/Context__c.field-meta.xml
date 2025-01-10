@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Context__c</fullName>
-    <description>Specific context in which code is running. This could include the context of a Visualforce page, a Lightning component, a trigger, an integration, and so on.</description>
+    <description>A generalized execution category for easier identification, consolidating detailed quiddities into broader types like Batch, Trigger, or Test.</description>
     <externalId>false</externalId>
+    <inlineHelpText>A generalized execution category for easier identification, consolidating detailed quiddities into broader types like Batch, Trigger, or Unit Test.</inlineHelpText>
     <label>Context</label>
     <required>true</required>
     <trackTrending>false</trackTrending>
@@ -12,39 +13,39 @@
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
-                <fullName>anonymous</fullName>
+                <fullName>ANONYMOUS</fullName>
                 <default>false</default>
                 <label>Anonymous Apex</label>
             </value>
             <value>
-                <fullName>batch</fullName>
-                <default>false</default>
-                <label>Batch</label>
-            </value>
-            <value>
-                <fullName>controller</fullName>
-                <default>false</default>
-                <label>Controller</label>
-            </value>
-            <value>
-                <fullName>integration</fullName>
+                <fullName>API</fullName>
                 <default>false</default>
                 <label>Integration</label>
             </value>
             <value>
-                <fullName>scheduler</fullName>
+                <fullName>BATCH</fullName>
                 <default>false</default>
-                <label>Scheduled Apex</label>
+                <label>Batch</label>
             </value>
             <value>
-                <fullName>trigger</fullName>
+                <fullName>APEX_TRIGGER</fullName>
                 <default>false</default>
                 <label>Trigger</label>
             </value>
             <value>
-                <fullName>unit-test</fullName>
+                <fullName>UI</fullName>
+                <default>false</default>
+                <label>User Interface</label>
+            </value>
+            <value>
+                <fullName>UNIT_TEST</fullName>
                 <default>false</default>
                 <label>Unit Test</label>
+            </value>
+            <value>
+                <fullName>OTHER</fullName>
+                <default>false</default>
+                <label>Other</label>
             </value>
         </valueSetDefinition>
     </valueSet>
