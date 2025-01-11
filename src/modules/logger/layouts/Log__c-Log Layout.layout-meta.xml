@@ -28,7 +28,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
-                <field>Context__c</field>
+                <field>Logger_Context__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>

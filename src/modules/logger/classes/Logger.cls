@@ -9,6 +9,8 @@
  */
 public inherited sharing class Logger {
 
+    public enum Context {ANONYMOUS, API, BATCH, APEX_TRIGGER, UI, UNIT_TEST, OTHER}
+
     public static final Integer DEFAULT_MIN_LOG_LEVEL  = 30;
 
     public static final Integer LEVEL_DEBUG    = 10;
@@ -17,18 +19,6 @@ public inherited sharing class Logger {
     public static final Integer LEVEL_ERROR    = 40;
     public static final Integer LEVEL_CRITICAL = 50;
 
-    public static final String CONTEXT_ANONYMOUS         = 'anonymous';
-    public static final String CONTEXT_BATCH             = 'batch';
-    public static final String CONTEXT_CONTROLLER        = 'controller';
-    public static final String CONTEXT_FUNCTION_CALLBACK = 'function-callback';
-    public static final String CONTEXT_FUTURE            = 'future';
-    public static final String CONTEXT_INTEGRATION       = 'integration';
-    public static final String CONTEXT_QUEUEABLE         = 'queueable';
-    public static final String CONTEXT_TRIGGER           = 'trigger';
-    public static final String CONTEXT_SCHEDULER         = 'scheduler';
-    public static final String CONTEXT_UNIT_TEST         = 'unit-test';
-
-    private static final String SOBJECT_POSTFIX_CUSTOM = '__c';
     private static final String SOBJECT_POSTFIX_EVENT  = '__e';
 
 
@@ -218,7 +208,6 @@ public inherited sharing class Logger {
 
             this.e = e;
 
-            log.Context__c     = getNonEmpty(log.Context__c,  getContext(e));
             log.Level__c       = getNonEmpty(log.Level__c, LEVEL_ERROR);
             log.Message__c     = getNonEmpty(log.Message__c, e.getMessage());
             log.Stack_Trace__c = getNonEmpty(log.Stack_Trace__c, e.getStackTraceString());
@@ -352,7 +341,14 @@ public inherited sharing class Logger {
                 this.setException(new LoggerException(log.Message__c));
             }
 
-            // Trigger context
+            // Set Execution information
+            Request request = Request.getCurrent();
+            log.Request_Id__c = getNonEmpty(log.Request_Id__c, request.getRequestId());
+            log.Execution_Context__c = getNonEmpty(log.Execution_Context__c, request.getQuiddity().name());
+            log.Logger_Context__c = getNonEmpty(log.Logger_Context__c, this.getContext(request.getQuiddity()));
+            log.Log_Time__c = DateTime.now().formatGMT('HH:mm:ss.SSS');
+
+            // Set Trigger Context information
             if (Trigger.isExecuting) {
                 log.Trigger_Operation__c   = getNonEmpty(log.Trigger_Operation__c, Trigger.operationType.name());
                 log.Trigger_Size__c        = Decimal.valueOf(getNonEmpty(log.Trigger_Size__c, Trigger.size));
@@ -414,36 +410,47 @@ public inherited sharing class Logger {
         /**
          * @description Defines the context of Apex code execution
          *
-         * @param e Exception to define code execution from an anonymous context
-         *
          * @return Context name
          */
-        private String getContext(Exception e) {
+        private Context getContext(Quiddity quiddity) {
 
-            String[] stackTrace = e.getStackTraceString().split('\n');
+            Set<System.Quiddity> apiQuiddities = new Set<System.Quiddity>{
+                System.Quiddity.BULK_API,
+                System.Quiddity.COMMERCE_INTEGRATION,
+                System.Quiddity.EXTERNAL_SERVICE_CALLBACK,
+                System.Quiddity.REST,
+                System.Quiddity.SOAP
+            };
 
-            if (
-                stackTrace.size() > 0 && 
-                stackTrace.get(stackTrace.size() - 1).startsWith('AnonymousBlock:')
-            ) {
-                return CONTEXT_ANONYMOUS;
-            } else if (System.isBatch()) {
-                return CONTEXT_BATCH;
-            } else if (System.isFunctionCallback()) {
-                return CONTEXT_FUNCTION_CALLBACK;
-            } else if (System.isFuture()) {
-                return CONTEXT_FUTURE;
-            } else if (System.isQueueable()) {
-                return CONTEXT_QUEUEABLE;
-            } else if (Trigger.isExecuting) {
-                return CONTEXT_TRIGGER;
-            } else if (System.isScheduled()) {
-                return CONTEXT_SCHEDULER;
+            Set<System.Quiddity> batchQuiddities = new Set<System.Quiddity>{
+                System.Quiddity.BATCH_ACS,
+                System.Quiddity.BATCH_APEX,
+                System.Quiddity.BATCH_CHUNK_PARALLEL,
+                System.Quiddity.BATCH_CHUNK_SERIAL
+            };
+
+            Set<System.Quiddity> uiQuiddities = new Set<System.Quiddity>{
+                System.Quiddity.AURA,
+                System.Quiddity.SYNCHRONOUS,
+                System.Quiddity.VF
+            };
+
+            // Determine context
+            if (Trigger.isExecuting) {
+                return Context.APEX_TRIGGER;
+            } else if (quiddity == System.Quiddity.ANONYMOUS) {
+                return Context.ANONYMOUS;
+            } else if (apiQuiddities.contains(quiddity)) {
+                return Context.API;
+            } else if (batchQuiddities.contains(quiddity)) {
+                return Context.BATCH;
+            } else if (uiQuiddities.contains(quiddity)) {
+                return Context.UI;
             } else if (Test.isRunningTest()) {
-                return CONTEXT_UNIT_TEST;
+                return Context.UNIT_TEST;
             }
 
-            return CONTEXT_CONTROLLER;
+            return Context.OTHER;
         }
 
         /**

@@ -215,9 +215,9 @@
                 <visibilityRule>
                     <booleanFilter>1 OR 2</booleanFilter>
                     <criteria>
-                        <leftValue>{!Record.Context__c}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>trigger</rightValue>
+                        <leftValue>{!Record.Trigger_Size__c}</leftValue>
+                        <operator>GT</operator>
+                        <rightValue>0</rightValue>
                     </criteria>
                     <criteria>
                         <leftValue>{!Record.Trigger_Size__c}</leftValue>
@@ -271,7 +271,37 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.Context__c</fieldItem>
+                <fieldItem>Record.Log_Time__c</fieldItem>
+                <identifier>RecordLog_Time_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.Request_Id__c</fieldItem>
+                <identifier>RecordRequest_Id_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.Execution_Context__c</fieldItem>
+                <identifier>RecordQuiddity_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.Logger_Context__c</fieldItem>
                 <identifier>RecordContext_cField</identifier>
             </fieldInstance>
         </itemInstances>
@@ -335,6 +365,12 @@
                 </componentInstanceProperties>
                 <componentName>flexipage:fieldSection</componentName>
                 <identifier>flexipage_fieldSection4</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>sfinxLoggerRelatedLogs</componentName>
+                <identifier>c_sfinxLoggerRelatedLogs</identifier>
             </componentInstance>
         </itemInstances>
         <name>sidebar</name>

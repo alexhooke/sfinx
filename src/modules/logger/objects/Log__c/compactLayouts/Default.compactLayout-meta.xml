@@ -3,7 +3,7 @@
     <fullName>Default</fullName>
     <fields>Name</fields>
     <fields>Level__c</fields>
-    <fields>Context__c</fields>
+    <fields>Logger_Context__c</fields>
     <fields>CreatedById</fields>
     <label>Default</label>
 </CompactLayout>

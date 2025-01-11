@@ -176,7 +176,7 @@
         <excludedStandardButtons>Import</excludedStandardButtons>
         <excludedStandardButtons>MassChangeOwner</excludedStandardButtons>
         <searchResultsAdditionalFields>Level__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>Context__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Logger_Context__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>Message__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>CREATEDBY_USER</searchResultsAdditionalFields>
     </searchLayouts>
