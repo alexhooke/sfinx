@@ -1,0 +1,24 @@
+<template>
+    <template lwc:if={logs}>
+    <lightning-card hide-header="true" label="Same Transaction Logs" class="slds-card__body_inner">
+        <lightning-accordion active-section-name="main">
+            <lightning-accordion-section name="main" label="Same Transaction Logs">
+                <ul class="slds-has-dividers_bottom-space slds-m-top_x-small">
+                <template for:each={logs} for:item="log">
+                    <li class="slds-item" key={log.id}>
+                        <lightning-tile label={log.name} href={log.link}>
+                            <p>
+                                <span class="slds-text-font_monospace">{log.logTime}</span>
+                                &nbsp;|&nbsp;
+                                {log.level}
+                            </p>
+                            <p class="slds-truncate slds-text-color_weak">{log.message}</p>
+                        </lightning-tile>
+                    </li>
+                </template>
+                </ul>
+            </lightning-accordion-section>
+        </lightning-accordion>
+    </lightning-card>
+    </template>
+</template>

@@ -341,11 +341,12 @@ public inherited sharing class Logger {
                 this.setException(new LoggerException(log.Message__c));
             }
 
-            // Set Execution Context information
+            // Set Execution information
             Request request = Request.getCurrent();
             log.Request_Id__c = getNonEmpty(log.Request_Id__c, request.getRequestId());
-            log.Quiddity__c = getNonEmpty(log.Quiddity__c, request.getQuiddity().name());
-            log.Context__c = getNonEmpty(log.Context__c, this.getContext(request.getQuiddity()));
+            log.Execution_Context__c = getNonEmpty(log.Execution_Context__c, request.getQuiddity().name());
+            log.Logger_Context__c = getNonEmpty(log.Logger_Context__c, this.getContext(request.getQuiddity()));
+            log.Log_Time__c = DateTime.now().formatGMT('HH:mm:ss.SSS');
 
             // Set Trigger Context information
             if (Trigger.isExecuting) {

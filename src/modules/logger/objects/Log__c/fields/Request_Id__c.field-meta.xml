@@ -4,7 +4,7 @@
     <description>The unique ID of a single transaction.</description>
     <externalId>false</externalId>
     <inlineHelpText>The unique ID of a single transaction. A transaction can contain one or more logs. Each log in a given transaction has the same Transaction Request ID.</inlineHelpText>
-    <label>Transaction Request ID</label>
+    <label>Apex Transaction ID / Request ID</label>
     <length>40</length>
     <required>true</required>
     <trackTrending>false</trackTrending>

@@ -1,6 +1,5 @@
 # Logger
 
-
 ## Logger Settings
 
 If the logger cannot detect the settings, it logs only Error and Fatal level logs.

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Quiddity__c</fullName>
-    <description>A detailed execution context indicator obtained via Request.getQuiddity(), providing precise information about context.</description>
+    <fullName>Execution_Context__c</fullName>
+    <description>Identifies the context from which the Apex transaction was initiated (e.g., REST API, Quick Action, Unit Test, etc.).</description>
     <externalId>false</externalId>
-    <inlineHelpText>A detailed execution context indicator obtained via Request.getQuiddity(), providing precise information about context.</inlineHelpText>
-    <label>Transaction Quiddity</label>
+    <inlineHelpText>Identifies the context from which the Apex transaction was initiated (e.g., REST API, Quick Action, Unit Test, etc.), determined using Salesforce’s standard getQuiddity function.</inlineHelpText>
+    <label>Apex Transaction Context / Quiddity</label>
     <required>true</required>
     <trackTrending>false</trackTrending>
     <type>Picklist</type>
@@ -15,142 +15,142 @@
             <value>
                 <fullName>ANONYMOUS</fullName>
                 <default>false</default>
-                <label>Anonymous Apex Block (ANONYMOUS)</label>
+                <label>Anonymous Apex</label>
             </value>
             <value>
                 <fullName>AURA</fullName>
                 <default>false</default>
-                <label>Aura Component (AURA)</label>
+                <label>Aura Component</label>
             </value>
             <value>
                 <fullName>BATCH_ACS</fullName>
                 <default>false</default>
-                <label>API Query Cursor driven batch Apex (BATCH_ACS)</label>
+                <label>Apex Batch (API Query Cursor)</label>
             </value>
             <value>
                 <fullName>BATCH_APEX</fullName>
                 <default>false</default>
-                <label>Batch Apex Job (BATCH_APEX)</label>
+                <label>Apex Batch</label>
             </value>
             <value>
                 <fullName>BATCH_CHUNK_PARALLEL</fullName>
                 <default>false</default>
-                <label>Batch Apex Job running in parallel (BATCH_CHUNK_PARALLEL)</label>
+                <label>Apex Batch (Parallel Execution)</label>
             </value>
             <value>
                 <fullName>BATCH_CHUNK_SERIAL</fullName>
                 <default>false</default>
-                <label>Batch Apex Job running in serial (BATCH_CHUNK_SERIAL)</label>
+                <label>Apex Batch (Serial Execution)</label>
             </value>
             <value>
                 <fullName>BULK_API</fullName>
                 <default>false</default>
-                <label>Bulk API Request (BULK_API)</label>
+                <label>Bulk API Request</label>
             </value>
             <value>
                 <fullName>COMMERCE_INTEGRATION</fullName>
                 <default>false</default>
-                <label>Apex Integration for B2B Commerce (COMMERCE_INTEGRATION)</label>
+                <label>Apex Integration for B2B Commerce</label>
             </value>
             <value>
                 <fullName>DISCOVERABLE_LOGIN</fullName>
                 <default>false</default>
-                <label>Login Discoverable login page (DISCOVERABLE_LOGIN)</label>
+                <label>Login Discoverable Login Page</label>
             </value>
             <value>
                 <fullName>EXTERNAL_SERVICE_CALLBACK</fullName>
                 <default>false</default>
-                <label>External Services Asynchronous Callback (EXTERNAL_SERVICE_CALLBACK)</label>
+                <label>External Services Asynchronous Callback</label>
             </value>
             <value>
                 <fullName>FUNCTION_CALLBACK</fullName>
                 <default>false</default>
-                <label>Callback Function (FUNCTION_CALLBACK)</label>
+                <label>Callback Function</label>
             </value>
             <value>
                 <fullName>FUTURE</fullName>
                 <default>false</default>
-                <label>Future Method (FUTURE)</label>
+                <label>Future Method</label>
             </value>
             <value>
                 <fullName>INBOUND_EMAIL_SERVICE</fullName>
                 <default>false</default>
-                <label>Inbound Email Service (INBOUND_EMAIL_SERVICE)</label>
+                <label>Inbound Email Service</label>
             </value>
             <value>
                 <fullName>INVOCABLE_ACTION</fullName>
                 <default>false</default>
-                <label>Invocable Action (INVOCABLE_ACTION)</label>
+                <label>Invocable Action</label>
             </value>
             <value>
                 <fullName>PLATFORM_EVENT_PUBLISH_CALLBACK</fullName>
                 <default>false</default>
-                <label>Platform Event Publish Callback (PLATFORM_EVENT_PUBLISH_CALLBACK)</label>
+                <label>Platform Event Publish Callback</label>
             </value>
             <value>
                 <fullName>POST_INSTALL_SCRIPT</fullName>
                 <default>false</default>
-                <label>Managed Package Install/Upgrade (POST_INSTALL_SCRIPT)</label>
+                <label>Managed Package Install/Upgrade</label>
             </value>
             <value>
                 <fullName>QUEUEABLE</fullName>
                 <default>false</default>
-                <label>Queueable Operation (QUEUEABLE)</label>
-            </value>
-            <value>
-                <fullName>QUICK_ACTION</fullName>
-                <default>false</default>
-                <label>Quick Action (QUICK_ACTION)</label>
-            </value>
-            <value>
-                <fullName>REMOTE_ACTION</fullName>
-                <default>false</default>
-                <label>Remote Action (REMOTE_ACTION)</label>
-            </value>
-            <value>
-                <fullName>REST</fullName>
-                <default>false</default>
-                <label>RESTful Web Service (REST)</label>
-            </value>
-            <value>
-                <fullName>RUNTEST_ASYNC</fullName>
-                <default>false</default>
-                <label>Tests Running Asynchronously (RUNTEST_ASYNC)</label>
-            </value>
-            <value>
-                <fullName>RUNTEST_DEPLOY</fullName>
-                <default>false</default>
-                <label>Run During Deployment (RUNTEST_DEPLOY)</label>
-            </value>
-            <value>
-                <fullName>RUNTEST_SYNC</fullName>
-                <default>false</default>
-                <label>Tests Running Synchronously (RUNTEST_SYNC)</label>
-            </value>
-            <value>
-                <fullName>SCHEDULED</fullName>
-                <default>false</default>
-                <label>Scheduled Job (SCHEDULED)</label>
-            </value>
-            <value>
-                <fullName>SOAP</fullName>
-                <default>false</default>
-                <label>Apex SOAP Web Service (SOAP)</label>
-            </value>
-            <value>
-                <fullName>SYNCHRONOUS</fullName>
-                <default>false</default>
-                <label>Synchronous Operation (SYNCHRONOUS)</label>
+                <label>Queueable Operation</label>
             </value>
             <value>
                 <fullName>TRANSACTION_FINALIZER_QUEUEABLE</fullName>
                 <default>false</default>
-                <label>Queueable Job with Transaction Finalizers (TRANSACTION_FINALIZER_QUEUEABLE)</label>
+                <label>Queueable Operation (Transaction Finalizers)</label>
+            </value>
+            <value>
+                <fullName>QUICK_ACTION</fullName>
+                <default>false</default>
+                <label>Quick Action</label>
+            </value>
+            <value>
+                <fullName>REMOTE_ACTION</fullName>
+                <default>false</default>
+                <label>Remote Action</label>
+            </value>
+            <value>
+                <fullName>REST</fullName>
+                <default>false</default>
+                <label>REST API Request</label>
+            </value>
+            <value>
+                <fullName>RUNTEST_ASYNC</fullName>
+                <default>false</default>
+                <label>Unit Test (Asynchronous Execution)</label>
+            </value>
+            <value>
+                <fullName>RUNTEST_DEPLOY</fullName>
+                <default>false</default>
+                <label>Unit Test (Deployment Execution)</label>
+            </value>
+            <value>
+                <fullName>RUNTEST_SYNC</fullName>
+                <default>false</default>
+                <label>Unit Test (Synchronous Execution)</label>
+            </value>
+            <value>
+                <fullName>SCHEDULED</fullName>
+                <default>false</default>
+                <label>Scheduled Job</label>
+            </value>
+            <value>
+                <fullName>SOAP</fullName>
+                <default>false</default>
+                <label>SOAP API Request</label>
+            </value>
+            <value>
+                <fullName>SYNCHRONOUS</fullName>
+                <default>false</default>
+                <label>Synchronous Operation</label>
             </value>
             <value>
                 <fullName>VF</fullName>
                 <default>false</default>
-                <label>Visualforce Page (VF)</label>
+                <label>Visualforce Page</label>
             </value>
         </valueSetDefinition>
     </valueSet>

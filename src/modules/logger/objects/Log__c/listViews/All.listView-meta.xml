@@ -3,7 +3,7 @@
     <fullName>All</fullName>
     <columns>NAME</columns>
     <columns>Level__c</columns>
-    <columns>Context__c</columns>
+    <columns>Logger_Context__c</columns>
     <columns>Message__c</columns>
     <columns>CREATED_DATE</columns>
     <columns>CREATEDBY_USER</columns>

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Context__c</fullName>
-    <description>A generalized execution category for easier identification, consolidating detailed quiddities into broader types like Batch, Trigger, or Test.</description>
+    <fullName>Logger_Context__c</fullName>
+    <description>Specifies the context in which the logger was executed.</description>
     <externalId>false</externalId>
-    <inlineHelpText>A generalized execution category for easier identification, consolidating detailed quiddities into broader types like Batch, Trigger, or Unit Test.</inlineHelpText>
-    <label>Context</label>
+    <inlineHelpText>Specifies the context in which the logger was executed, if it can be technically determined. For instance, if an Apex transaction is initiated from Anonymous Apex but the logger is invoked within a trigger, the logger’s context will be recorded as “Trigger”. </inlineHelpText>
+    <label>Logger Context</label>
     <required>true</required>
     <trackTrending>false</trackTrending>
     <type>Picklist</type>

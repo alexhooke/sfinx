@@ -271,6 +271,16 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
+                <fieldItem>Record.Log_Time__c</fieldItem>
+                <identifier>RecordLog_Time_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.Request_Id__c</fieldItem>
                 <identifier>RecordRequest_Id_cField</identifier>
             </fieldInstance>
@@ -281,7 +291,7 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.Quiddity__c</fieldItem>
+                <fieldItem>Record.Execution_Context__c</fieldItem>
                 <identifier>RecordQuiddity_cField</identifier>
             </fieldInstance>
         </itemInstances>
@@ -291,7 +301,7 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.Context__c</fieldItem>
+                <fieldItem>Record.Logger_Context__c</fieldItem>
                 <identifier>RecordContext_cField</identifier>
             </fieldInstance>
         </itemInstances>
@@ -355,6 +365,12 @@
                 </componentInstanceProperties>
                 <componentName>flexipage:fieldSection</componentName>
                 <identifier>flexipage_fieldSection4</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>sfinxLoggerRelatedLogs</componentName>
+                <identifier>c_sfinxLoggerRelatedLogs</identifier>
             </componentInstance>
         </itemInstances>
         <name>sidebar</name>
