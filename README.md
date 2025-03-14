@@ -33,6 +33,29 @@ The project is developed in source code format. If you need the code in metadata
 sf project convert source --root-dir src --output-dir meta
 ```
 
+### Integrating SFINX into an Existing Project
+
+You can add the SFINX Framework to an existing project. Run the following command in your SFDX project root:
+
+```shell
+# Create a framework folder
+git submodule add https://github.com/YOUR-ACCOUNT/YOUR-FRAMEWORK.git sfinx
+# Enable sparse checkout
+cd sfinx
+git sparse-checkout init --cone
+git sparse-checkout set src/sfinx
+# Move src/sfinx/ to the correct location in your project
+mv sfinx/src/sfinx force-app/
+# Remove the empty framework/src/ folder
+rm -rf sfinx/src
+# Configure Git to ensure force-app/sfinx/ is linked to the framework repository:
+echo "/force-app/sfinx/* merge=ours" >> .gitmodules
+# Commit and push changes to GitHub
+git add .
+git commit -m "Integrated SFINX framework into src/sfinx"
+git push origin main
+```
+
 ## Modules
 
 ### Logger
