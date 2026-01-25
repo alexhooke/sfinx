@@ -9,4 +9,5 @@ meta/
 
 # Code editor files
 .idea/
+.vscode/
 IlluminatedCloud/
